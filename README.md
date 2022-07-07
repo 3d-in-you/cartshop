@@ -47,7 +47,7 @@ git remote add origin git@github.com:3d-in-you/cartshop.git
 
 * Before started, checkout to branch `dev-frontend` first
 ```
-git checkout front-end
+git checkout dev-frontend
 git pull
 ```
 * Before push commit to remote, make sure to check current branch is `dev-frontend` then simply push with
@@ -56,7 +56,7 @@ git push
 ```
 * Do not push directly to master
 
-## Front End
+## Back End
 * Add remote repository
 Using SSH
 ```
@@ -70,7 +70,7 @@ git remote add origin git@github.com:3d-in-you/cartshop.git
 
 * Before started, checkout to branch `dev-backend` first
 ```
-git checkout front-end
+git checkout dev-backend
 git pull
 ```
 * Before push commit to remote, make sure to check current branch is `dev-backend` then simply push with
