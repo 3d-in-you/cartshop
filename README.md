@@ -35,6 +35,7 @@ php artisan serve
 
 ## Front End
 * Add remote repository
+
 Using HTTPS
 ```
 git remote add origin https://github.com/3d-in-you/cartshop.git
@@ -58,6 +59,7 @@ git push
 
 ## Back End
 * Add remote repository
+
 Using HTTPS
 ```
 git remote add origin https://github.com/3d-in-you/cartshop.git
