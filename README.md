@@ -5,12 +5,12 @@ Welcome to Our Repository, our time will be long kids, keep your smile like evil
 ## Cloning Project
 Go to directory where the project will cloned.
 
-Using SSH
+Using HTTPS
 ```
 git clone https://github.com/3d-in-you/cartshop.git
 ```
 
-Using HTTPS
+Using SSH
 ```
 git clone git@github.com:3d-in-you/cartshop.git
 ```
@@ -35,12 +35,12 @@ php artisan serve
 
 ## Front End
 * Add remote repository
-Using SSH
+Using HTTPS
 ```
 git remote add origin https://github.com/3d-in-you/cartshop.git
 ```
 
-Using HTTPS
+Using SSH
 ```
 git remote add origin git@github.com:3d-in-you/cartshop.git
 ```
@@ -58,12 +58,12 @@ git push
 
 ## Back End
 * Add remote repository
-Using SSH
+Using HTTPS
 ```
 git remote add origin https://github.com/3d-in-you/cartshop.git
 ```
 
-Using HTTPS
+Using SSH
 ```
 git remote add origin git@github.com:3d-in-you/cartshop.git
 ```
