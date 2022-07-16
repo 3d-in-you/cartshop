@@ -75,15 +75,22 @@ class AuthenticationController extends Controller
         return response()
             ->json(['message' => 'Hi ' . $user->name . ', welcome to home', 'access_token' => $token, 'token_type' => 'Bearer',]);
     }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function logout(Request $request)
     {
-        //
+        if ($request->user()) {
+            $request->user()->tokens()->delete();
+        }
+
+        return [
+            'message' => 'You have successfully logged out and the token was successfully deleted'
+        ];
     }
 
     /**
@@ -94,7 +101,7 @@ class AuthenticationController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
