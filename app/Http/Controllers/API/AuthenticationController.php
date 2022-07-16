@@ -7,6 +7,7 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 
 class AuthenticationController extends Controller
 {
@@ -28,18 +29,27 @@ class AuthenticationController extends Controller
     public function register(Request $request)
     {
         try {
-            $this->validate($request, [
-                'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class),],
-                'password' => ['required', 'min:8'],
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|max:255|unique:users',
+                'email' => 'required|string|email|max:255|unique:users',
+                'password' => 'required|string|min:8'
             ]);
+
+            if ($validator->fails()) {
+                return response()->json($validator->errors());
+            }
 
             $user = User::create([
                     'name' => $request->name,
                     'email' => $request->email,
                     'password' => bcrypt($request->password)
                 ]);
+
+            $token = $user->createToken('auth_token')->plainTextToken;
+
             return response()->json([
+                'data' => $user,
+                'token' => $token,
                 'status' => 'success',
                 'message' => 'Your account has been registered'
             ]);
