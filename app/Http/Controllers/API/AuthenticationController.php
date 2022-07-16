@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AuthenticationController extends Controller
 {
@@ -22,9 +25,30 @@ class AuthenticationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function register(Request $request)
     {
-        //
+        try {
+            $this->validate($request, [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class),],
+                'password' => ['required', 'min:8'],
+            ]);
+
+            $user = User::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => bcrypt($request->password)
+                ]);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Your account has been registered'
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Failed to create an account'
+            ]);
+        }
     }
 
     /**
